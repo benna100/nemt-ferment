@@ -1,0 +1,283 @@
+---
+---
+
+@mixin render-tag {
+    float: left;
+    margin-right: 10px;
+    background-color: #f0bcbc;
+    color: black;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+html{
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color: #f4f4f4;
+}
+
+$primary-color: #02C39A;
+
+header {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    a {
+        text-decoration: none;
+        color: white;
+        font-size: 2em;
+    }
+}
+
+
+section {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+section.intro {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h1 {
+        margin-top: 48px;
+        margin-bottom: 48px;
+        font-size: 2em;
+    }
+
+    .filter {
+        background-color: white;
+        padding: 24px;
+        box-shadow: 0 2px 4px 0 rgba(57,55,56,0.15);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > span {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+        }
+
+        .fermentation-starter {
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            max-width: 400px;
+            width: 100%;
+
+            input {
+                display: none;
+            }
+
+            span {
+                box-sizing: border-box;
+
+                @media (max-width: 500px) {
+                    width: 100%;
+                }
+            }
+
+            span:not(:last-of-type) {
+                @media (max-width: 500px) {
+                    margin-bottom: 8px;
+                }
+            }
+
+            label {
+                display: block;
+                cursor: pointer;
+                border-radius: 8px;
+                border: 1px solid lightgrey;
+                transition: background-color 0.3s, color 0.3s;
+                padding: 12px;
+                box-sizing: border-box;
+            }
+
+            input:checked ~ label {
+                color: white;
+                background-color: $primary-color;
+                font-weight: bold;
+            }
+        }
+
+        .area {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            width: 100%;
+
+            > span {
+                font-size: 1.5rem;
+            }
+
+            input,
+            button,
+            span {
+                //max-width: 320px;
+            }
+
+            span {
+               margin-bottom: 8px;
+            }
+
+            input {
+                width: 100%;
+                display: block;
+                margin-bottom: 36px;
+                border-radius: 8px;
+                border: 1px solid lightgrey;
+                padding: 12px;
+                //background-color: transparent;
+            }
+        }
+
+        button {
+            display: block;
+            background-color: $primary-color;
+            color: white;
+            border: 1px solid $primary-color;
+            border-radius: 8px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.content {
+    padding: 24px;
+    box-shadow: 0 2px 4px 0 rgba(57,55,56,0.15);
+    border-radius: 8px;
+    margin-bottom: 50px;
+    transition: opacity 0.3s;
+    background-color: white;
+
+    &:not(.visible) {
+        opacity: 0;
+    }
+
+    > ul > li {
+        &:not(:last-of-type) {
+            display: block;
+            border-bottom: 1px solid lightgrey;
+        }
+        &:first-of-type {
+            @media (max-width: 400px) {
+                display: none;
+            }
+        }
+
+        > ul {
+            padding: 12px 0;
+            display: flex;
+            flex-direction: column;
+
+            @media (min-width: 400px) {
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+            }
+
+            > li {
+                @media (min-width: 400px) {
+                    width: 20%;
+                }
+                button {
+                    background-color: $primary-color;
+                    color: white;
+                    border: 1px solid $primary-color;
+                    border-radius: 8px;
+                    padding: 8px 24px;
+                    cursor: pointer;
+                }
+
+                @media (max-width: 400px) {
+                    &:nth-of-type(1):before { content: 'Navn: '}
+                    &:nth-of-type(2):before { content: 'By: '}
+                    &:nth-of-type(3):before { content: 'Starterkultur: '}
+
+                    &:before {
+                        font-weight: bold;
+                    }
+                }
+
+                &:last-of-type {
+                    @media (max-width: 400px) {
+                        margin: 12px auto;
+                    }
+                }
+            }
+        }
+    } 
+}
+
+aside {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000ba;
+    transition: opacity 0.3s;
+
+    &:not(.visible) {
+        opacity: 0;
+        visibility: hidden;
+    } 
+
+    .modal{
+        display: none;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        background-color: white;
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px 0 rgba(57,55,56,0.15);
+        min-width: 280px;
+
+        button:first-of-type {
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 12px;
+            line-height: 1rem;
+            border: none;
+            background-color: transparent;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        button:last-of-type {
+            background-color: $primary-color;
+            color: white;
+            border: 1px solid $primary-color;
+            border-radius: 8px;
+            padding: 12px 24px;
+            cursor: pointer;
+            display: block;
+            margin: 24px auto 0;
+        }
+    } 
+}
+
+
+
+

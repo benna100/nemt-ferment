@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<main class="playlist">
+    <section class="playlist">
+        <h1 class="description">
+            {{ page.description }}
+        </h1>
+        <h2>By {{ page.author }}</h2>
+        <ul class="tags">
+            {% for tag in page.tags %}
+            <li>{{ tag }}</li>
+            {% endfor %}
+        </ul>
+
+        <div>
+            {{ page.playlist }}
+        </div>
+    </section>
+</main>
+
