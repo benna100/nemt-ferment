@@ -150,6 +150,18 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
+        matchingDonors = [{
+            navn: 'Test bruger 1',
+            by: 'Viborg',
+            fermentering1: 'vandkefir',
+            kontaktinfo: 'test1@test.dk',
+        }, {
+            navn: 'Test bruger 2',
+            by: 'Slagelse',
+            fermentering1: 'Mælkekefir',
+            kontaktinfo: 'test2@test.dk',
+        }];
+
         if (matchingDonors.length !== 0) {
             content.classList.add("visible");
             ul.innerHTML = '';
